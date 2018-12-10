@@ -2,7 +2,7 @@ import string
 
 with open('input.txt', 'r') as f:
     input_lines = f.readlines()
-    input_data = [x.strip('\n') for x in input_lines]
+    input_data = [x.strip() for x in input_lines]
 
 #part 1
 threes = 0
