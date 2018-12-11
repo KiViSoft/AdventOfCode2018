@@ -1,3 +1,5 @@
+# part 1
+
 class Coordinates2D(object):
     def __init__(self, ix: int, iy: int) -> None:
         self.x = ix
@@ -12,6 +14,7 @@ class Coordinates2D(object):
 
     def __hash__(self):
         return hash((self.x, self.y))
+
 
 class SmallRect(object):
     def __init__(self, iid: int, ix: int, iy: int, iw: int, ih: int) -> None:
@@ -40,7 +43,6 @@ class SmallRect(object):
             if self.x < other.right and self.right > other.x and self.y < other.bottom and self.bottom > other.y:
                 return True
         return False
-
 
 
 def parse_data(input_data):
@@ -74,3 +76,18 @@ for i_index in range(len(squares)):
                         overlapped_claims.add(coord)
 
 print(len(overlapped_claims))
+
+# part 2
+
+overlaps = False
+
+for i_index in range(len(squares)):
+    for j_index in range(len(squares)):
+        if squares[i_index].intersects(squares[j_index]):
+            overlaps = True
+            j_index = 0
+            break
+    if overlaps:
+        overlaps = False
+    else:
+        print(squares[i_index].id)
