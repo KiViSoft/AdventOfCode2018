@@ -24,6 +24,8 @@ class Guard(object):
 guards = []
 regex_id = re.compile('[0-9]+')
 
+# part 1
+
 with open('input.txt', 'r') as f:
     input_lines = f.readlines()
     input_lines.sort()
@@ -53,3 +55,22 @@ with open('input.txt', 'r') as f:
 guards.sort(reverse=True)
 worst_guard = guards[0]
 print(int(worst_guard.id) * max(worst_guard.minutes_asleep, key=worst_guard.minutes_asleep.count))
+
+# part 2
+freq_max = 0
+most_freq = 0
+guard_id = 0
+
+for guard in guards:
+    try:
+        most_frequently_asleep = max(guard.minutes_asleep, key=guard.minutes_asleep.count)
+        frequency = guard.minutes_asleep.count(most_frequently_asleep)
+        if frequency > freq_max:
+            freq_max = frequency
+            most_freq = most_frequently_asleep
+            guard_id = int(guard.id)
+    except ValueError:
+        pass
+
+print(guard_id * most_freq)
+
