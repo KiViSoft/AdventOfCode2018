@@ -1,6 +1,8 @@
 POLYMER = []
 
 
+# part 1
+
 def is_opposite(left, right):
     return abs(ord(left) - ord(right)) == 32
 
@@ -21,3 +23,18 @@ with open('input.txt', 'r') as f:
         add_char_to_polymer(char)
 
 print(len(POLYMER))
+
+# part 2
+
+alpha = "abcdefghijklmnopqrstuvxyz"
+
+with(open('input.txt', 'r')) as f:
+    _in = f.read()
+    for character in iter(alpha):
+        manipulated_input = _in.replace(character, '')
+        manipulated_input = manipulated_input.replace(character.upper(), '')
+        POLYMER.clear()
+        for b in iter(manipulated_input):
+            if b.isalpha():
+                add_char_to_polymer(b)
+        print(character, ':', len(POLYMER))
