@@ -29,12 +29,11 @@ print(len(POLYMER))
 alpha = "abcdefghijklmnopqrstuvxyz"
 
 with(open('input.txt', 'r')) as f:
-    _in = f.read()
+    input_data = f.read()
     for character in iter(alpha):
-        manipulated_input = _in.replace(character, '')
-        manipulated_input = manipulated_input.replace(character.upper(), '')
+        manipulated_input = input_data.replace(character, '').replace(character.upper(), '')
         POLYMER.clear()
-        for b in iter(manipulated_input):
-            if b.isalpha():
-                add_char_to_polymer(b)
+        for char_iterator in iter(manipulated_input):
+            if char_iterator.isalpha():
+                add_char_to_polymer(char_iterator)
         print(character, ':', len(POLYMER))
